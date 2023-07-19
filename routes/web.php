@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +17,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('pages.home');
 });
+
+//user routes
+
+Route::get('/user', [UserController::class, 'index']);
+Route::get('/user/{id}/info', [UserController::class, 'detail']);
+Route::get('/user/{id}/edit', [UserController::class, 'edit']);
+Route::patch('/user/{id}', [UserController::class, 'update']);
+Route::delete('/user/{id}', [UserController::class, 'destroy']);
