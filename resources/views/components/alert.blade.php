@@ -8,7 +8,7 @@
         <span>Data Anda Berhasil {{ session('success') }}!</span>
     </div>
     <div class="flex-none">
-        <button class="btn btn-sm btn-ghost">
+        <button class="btn btn-sm btn-ghost" onclick="location.reload()">
             <span class="material-symbols-sharp" id="successToggle">
                 close
             </span>
@@ -26,7 +26,7 @@
         <span>Data Anda Berhasil {{ session('delete') }}!</span>
     </div>
     <div class="flex-none">
-        <button class="btn btn-sm btn-ghost">
+        <button class="btn btn-sm btn-ghost" onclick="location.reload()">
             <span class="material-symbols-sharp" id="successToggle">
                 close
             </span>
@@ -44,7 +44,7 @@
         <span>Data Anda Berhasil {{ session('update') }}!</span>
     </div>
     <div class="flex-none">
-        <button class="btn btn-sm btn-ghost">
+        <button class="btn btn-sm btn-ghost" onclick="location.reload()">
             <span class="material-symbols-sharp" id="successToggle">
                 close
             </span>
