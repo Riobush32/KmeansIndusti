@@ -1,7 +1,7 @@
 <div
     class="z-50 w-64 h-[94vh] rounded-3xl mt-[3vh] ml-6 font-sans overflow-hidden shadow-2xl bg-base-100 font-medium text-md fixed">
     <div class="flex items-center h-20 w-full">
-        <a href="" class="text-center w-full">
+        <a href="{{ url('/') }}" class="text-center w-full">
             <div class="items-center flex text-md ml-8">
 
                 <span class="material-symbols-sharp ml-1">
