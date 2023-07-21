@@ -12,6 +12,7 @@ class IndustriController extends Controller
 
         return view('pages.dataIndustri.index',[
             'data' => DataIndustri::paginate(5),
+            'active' => 'dataIndustri',
         ]);
     }
 }
