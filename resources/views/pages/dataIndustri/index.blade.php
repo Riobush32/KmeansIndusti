@@ -31,14 +31,11 @@
 
             <div class="overflow-x-auto">
                 <table class="table table-compact w-full">
-
+                
                     <thead>
                         <tr>
-                            <th></th>
-                            <th>Kecamatan</th>
-                            <th>BerIzin</th>
-                            <th>Tidak Berizin</th>
-                            <th>Total</th>
+                            <th>No.</th>
+                            <th>Tahun</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -47,73 +44,27 @@
                         @foreach($data as $item)
                         <tr>
                             <th>{{ $no }}</th>
-                            <td>{{ $item->kecamatan }}</td>
-                            <td>{{ $item->berizin }}</td>
-                            <td>{{ $item->tidak_berizin }}</td>
-                            <td>{{ $item->total }}</td>
+                            <td>{{ $item}}</td>
                             <td>
-                                <form action="{{ url("/data/industri/$item->id") }}" method="POST">
-                                    @csrf @method('DELETE')
-
-                                    {{-- <a href="{{ url("/data/industri/$item->id/info")}}"
-                                        class="btn btn-outline btn-info btn-sm">
-                                        <span class="material-symbols-sharp">
-                                            info
-                                        </span>
-                                    </a>
-
-                                    <a href="{{ url("/data/industri/$item->id/edit") }}"
-                                        class="btn btn-outline btn-warning btn-sm">
-                                        <span class="material-symbols-sharp">
-                                            edit
-                                        </span>
-                                    </a> --}}
-                                    {{-- delete button --}}
-                                    <!-- The button to open modal -->
-                                    {{-- <label for="my-modal" class="btn btn-error btn-outline  btn-sm">
-                                        <span class="material-symbols-sharp">
-                                            delete
-                                        </span>
-                                    </label> --}}
-
-                                    <!-- Put this part before </body> tag -->
-                                    <input type="checkbox" id="my-modal" class="modal-toggle" />
-                                    <div class="modal">
-                                        <div class="modal-box bg-warning">
-                                            <h3 class="font-bold text-lg">
-                                                <span class="material-symbols-sharp">
-                                                    warning
-                                                </span>
-                                                Warning!
-                                            </h3>
-                                            <p class="py-4">yakin hapus data ini?!</p>
-                                            <div class="modal-action">
-                                                <label for="my-modal" class="btn btn-sm  btn-outline">cancel</label>
-                                                <button type="submit" class="btn btn-error btn-outline  btn-sm">
-                                                    <span class="material-symbols-sharp">
-                                                        delete
-                                                    </span>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
-
+                                <a href="{{ url("/dataIndustri/$item/filter") }}" class="btn btn-outline btn-primary-focus btn-sm">
+                                    <span class="material-symbols-sharp">
+                                        docs_add_on
+                                    </span>
+                                </a>
+                
                             </td>
                         </tr>
                         <?php $no++; ?>
                         @endforeach
-
-
-
+                
+                
+                
                     </tbody>
                     <tfoot>
                         <tr>
-                            <th></th>
-                            <th>Kecamatan</th>
-                            <th>BerIzin</th>
-                            <th>Tidak Berizin</th>
-                            <th>Total</th>
+                            <th>No.</th>
+                            <th>Tahun</th>
+                
                             <th></th>
                         </tr>
                     </tfoot>
@@ -122,10 +73,6 @@
 
             </div>
 
-        </div>
-        <div class="justify-end">
-            <div class="laptop:hidden">{{ $data->links('pagination::simple-tailwind') }}</div>
-            <div class="hidden laptop:block">{{ $data->links('pagination::tailwind') }}</div>
         </div>
     </div>
 </div>

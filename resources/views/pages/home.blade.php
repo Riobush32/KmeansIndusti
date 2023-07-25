@@ -21,10 +21,10 @@
                     @else
                     @if (Auth::user()->role == 'superadmin')
                     <li><a href="{{ url('/user') }}">User Data</a></li>
-                    <li><a href="{{ url('/arsip') }}">Arsip</a></li>
+                    <li><a href="{{ url('/data/industri') }}">Proses</a></li>
 
                     @elseif (Auth::user()->role == 'admin')
-                    <li><a href="{{ url('/arsip') }}">Arsip</a></li>
+                    <li><a href="{{ url('/data/industri') }}">Proses</a></li>
                     @endif
 
                     <li>
@@ -55,9 +55,9 @@
             @if (Auth::user()->role == 'superadmin')
             <a href="{{ url('/user') }}" class="btn btn-outline btn-primary border-none mx-1 hidden md:flex">User
                 Data</a>
-            <a href="{{ url('/arsip') }}" class="btn btn-outline btn-primary border-none mx-1 hidden md:flex">Arsip</a>
+            <a href="{{ url('/data/industri') }}" class="btn btn-outline btn-primary border-none mx-1 hidden md:flex">Proses</a>
             @elseif (Auth::user()->role == 'admin')
-            <a href="{{ url('/arsip') }}" class="btn btn-outline btn-primary border-none mx-1 hidden md:flex">Arsip</a>
+            <a href="{{ url('/data/industri') }}" class="btn btn-outline btn-primary border-none mx-1 hidden md:flex">Proses</a>
             @endif
 
             <a href="" class="btn btn-outline btn-primary border-none mx-1 hidden md:flex">{{ Auth::user()->name }}</a>
@@ -88,5 +88,7 @@
         </div>
     </div>
 </div>
+
+
 
 @endsection

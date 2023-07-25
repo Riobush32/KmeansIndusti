@@ -36,7 +36,7 @@
         <a href="{{ url('/data/industri') }}" class="sidebar-button items-center flex {{ $active == 'dataIndustri' ? 'bg-primary' : '' }}">
             <div class="ml-5 items-center flex text-sm">
                 <span class="material-symbols-sharp">
-                    edit_square
+                    folder_open
                 </span>
                 <span class="ml-3">
                     Data
@@ -44,7 +44,28 @@
             </div>
         </a>
 
+        <a href="{{ route('kmeans') }}"
+            class="sidebar-button items-center flex {{ $active == 'Kmeans' ? 'bg-primary' : '' }}">
+            <div class="ml-5 items-center flex text-sm">
+                <span class="material-symbols-sharp">
+                    rebase_edit
+                </span>
+                <span class="ml-3">
+                    Kmeans
+                </span>
+            </div>
+        </a>
 
+        <a href="{{ url('/hasil') }}" class="sidebar-button items-center flex {{ $active == 'hasil' ? 'bg-primary' : '' }}">
+            <div class="ml-5 items-center flex text-sm">
+                <span class="material-symbols-sharp">
+                    assignment_turned_in
+                </span>
+                <span class="ml-3">
+                    Hasil
+                </span>
+            </div>
+        </a>
 
     </div>
 
