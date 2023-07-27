@@ -11,19 +11,14 @@
             </div>
 
             @if (!$data->isEmpty())
-            <div class="join join-vertical lg:join-horizontal">
-                <a href="{{ url('kmeans/proses') }}" class="btn btn-sm join-item tooltip tooltip-bottom" data-tip="Cluster">
-                    <span class="material-symbols-sharp">
-                        design_services
-                    </span>
-                </a>
-                <button class="btn btn-sm join-item tooltip tooltip-bottom" data-tip="hasil">
-                    <span class="material-symbols-sharp">
-                        fact_check
-                    </span>
-                </button>
-                
-            </div>
+            <form action="{{ url('/kmeans/proses') }}" class="join join-vertical lg:join-horizontal">
+                <button class="btn btn-sm join-item rounded-l-full" type="submit">proses</button>
+                <input type="number" class="input input-bordered input-sm join-item w-20" placeholder="K" name="maxLoop" min="2"
+                    />
+                @if (!$cluster->isEmpty())
+                <a href="{{ url('/hasil/iterasi') }}" class="btn btn-sm join-item rounded-r-full" type="submit">iterasi</a>
+                @endif
+            </form>
             @endif
 
         </div>

@@ -27,14 +27,82 @@ class KmeansController extends Controller
         ]);
     }
 
+    //hapus data pilihan
     public function truncate()
     {
         dataPilihan::truncate();
 
         return back();
     }
-    
 
+
+    //Proses kmeans
+    public function kmeans(Request $request)
+    {
+        //hapus(kosongkan) table cluster
+        Cluster::truncate();
+        //ambil data industri
+        $industri = dataPilihan::orderBy('total', 'asc')->get();
+
+         //ambil data centroid awal
+        $centroids = Centroid::where('iterasi', 0)->orderBy('total', 'asc')->get();
+
+            
+        //proses mencari cluster function cluster
+        $this->cluster($industri, $centroids);
+        //mencari centroid baru
+        $this->avarageCluster($centroids, 0);
+
+        $iterasi = 1;
+        $Loop = 0;
+        $maxLoop = 100;
+
+        //check jika inputan ada maka maxLoop diganti dengan inputan
+        if ($request->maxLoop) {
+            $maxLoop = $request->maxLoop;
+        }
+        while ($Loop < $maxLoop) {
+            
+            //ambil data centroid awal
+            $centroids = Centroid::where('iterasi', $iterasi)->get();
+            
+            //proses mencari cluster function cluster
+            $this->cluster($industri, $centroids);
+
+            //mencari centroid baru
+            $this->avarageCluster($centroids, $iterasi);
+
+
+            $centroidAwal = Cluster::where('iterasi', $iterasi-1)->select('index')->get();
+            $centroidAkhir = Cluster::where('iterasi', $iterasi)->select('index')->get();
+
+            $check = array();
+            $check = [];
+            for ($i=0; $i < count($centroidAwal); $i++) { 
+                if ($centroidAwal[$i] == $centroidAkhir[$i])
+                {
+                    $check[$i]= 1;
+                }
+                else{
+                    $check[$i] = 2;
+                }
+            }
+
+            if (!in_array(2, $check)) {
+                break;
+            }
+            $Loop++;
+            $iterasi++;
+
+
+        }
+
+        return redirect('/hasil/iterasi');
+        
+    }
+
+
+    //mencari kValue
     public function kvalue(Request $request)
     {
         Centroid::truncate();
@@ -60,52 +128,6 @@ class KmeansController extends Controller
 
         return redirect('/hasil');
     }
-
-
-    //Proses kmeans
-    public function kmeans()
-    {
-        //ambil data industri
-        $industri = DataIndustri::all();
-        //ambil data centroid awal
-        $centroids = Centroid::where('iterasi', 0)->get();
-
-        //hapus table cluster
-        Cluster::truncate();
-
-        //proses mencari cluster function cluster
-        $this->cluster($industri, $centroids);
-
-        // for ($i=1; $i <= count($centroids); $i++) { 
-        //     $join = Cluster::where('iterasi', 0)
-        //         ->where('index', 1)
-        //         ->join('data_industris', 'data_industris.id', '=', 'clusters.data_industri')
-        //         ->avg('c1');
-        // }
-        $j = 0;
-        for ($i=1; $i <= count($centroids); $i++) { 
-            $join = Cluster::where('iterasi', 0)
-                ->where('index', $i)
-                ->join('data_industris', 'data_industris.id', '=', 'clusters.data_industri')->get();
-            
-            $berizin = $join->avg('berizin');
-            $tidak_berizin = $join->avg('tidak_berizin');
-            $total = $join->avg('total');
-            $iterasi = $j+1;
-
-            Centroid::create([
-                'berizin' => $berizin,
-                'tidak_berizin' => $tidak_berizin,
-                'total' => $total,
-                'iterasi' => $iterasi
-            ]);
-        }
-
-        return back();
-        
-    }
-
-
 
 
     //proses clusterisasi
@@ -148,7 +170,27 @@ class KmeansController extends Controller
         }
     }
 
+    function avarageCluster($centroids, $iterasiAwal)
+    {
+        $j = $iterasiAwal;
+        for ($i=1; $i <= count($centroids); $i++) { 
+            $join = Cluster::where('iterasi', $j)
+                ->where('index', $i)
+                ->join('data_industris', 'data_industris.id', '=', 'clusters.data_industri')->get();
+            
+            $berizin = $join->avg('berizin');
+            $tidak_berizin = $join->avg('tidak_berizin');
+            $total = $join->avg('total');
+            $iterasi = $j+1;
 
+            Centroid::create([
+                'berizin' => $berizin,
+                'tidak_berizin' => $tidak_berizin,
+                'total' => $total,
+                'iterasi' => $iterasi
+            ]);
+        }
+    }
     
 
     // function memasukkan data cluster

@@ -16,9 +16,9 @@ return new class extends Migration
         Schema::create('centroids', function (Blueprint $table) {
             $table->id();
             $table->string('kecamatan')->nullable();
-            $table->integer('berizin')->nullable();
-            $table->integer('tidak_berizin')->nullable();
-            $table->integer('total')->nullable();
+            $table->double('berizin')->nullable();
+            $table->double('tidak_berizin')->nullable();
+            $table->double('total')->nullable();
             $table->integer('tahun')->nullable();
             $table->integer('iterasi')->nullable();
             $table->timestamps();

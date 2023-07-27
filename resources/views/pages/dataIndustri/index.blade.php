@@ -13,8 +13,8 @@
                 <div class="form-control">
                     <form action="{{ route('industri.store') }}" class="input-group" method="POST" enctype="multipart/form-data">
                         @csrf
-                        <input type="file" class="file-input file-input-bordered file-input-primary w-full max-w-xs" name="excel"/>
-                        <input type="number" placeholder="Tahun.." class="input input-bordered input-primary w-28 max-w-xs" name="tahun"/>
+                        <input type="file" class="file-input file-input-bordered file-input-primary w-full max-w-xs" name="excel" required/>
+                        <input type="number" placeholder="Tahun.." class="input input-bordered input-primary w-28 max-w-xs" name="tahun" required/>
                         <button class="btn btn-active btn-primary w-10" type="submit">
                             <span class="material-symbols-sharp bg-transparent">
                                 note_add

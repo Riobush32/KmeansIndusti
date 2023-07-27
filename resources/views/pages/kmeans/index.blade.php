@@ -12,9 +12,9 @@
             
             @if (!$data->isEmpty())
                 <form action="{{ url('/kmeans/kvalue') }}" class="join">
-                    <a href="{{ url('/kmeans/truncate')}}" class="btn btn-sm join-item rounded-l-full">Delete Table</a>
-                    <input type="number" class="input input-bordered input-sm join-item w-20" placeholder="K" name="kvalue" min="0" max="25"/>
-                    <button class="btn btn-sm join-item rounded-r-full" type="submit">proses</button>
+                    <a href="{{ url('/kmeans/truncate')}}" class="btn btn-sm join-item rounded-l-full mx-0">Delete Table</a>
+                    <input type="number" class="input input-bordered rounded-none mx-0 input-sm join-item w-20" placeholder="K" name="kvalue" min="0" max="25" required/>
+                    <button class="btn btn-sm join-item rounded-r-full mx-0" type="submit">proses</button>
                 </form>
             @endif
             

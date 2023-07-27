@@ -47,3 +47,6 @@ Route::get('/kmeans/proses', [KmeansController::class, 'kmeans']);
 
 //Hasil Routes
 Route::get('/hasil', [HasilController::class, 'index']);
+Route::get('/hasil/iterasi', [HasilController::class, 'iterasi']);
+Route::get('hasil/akhir', [HasilController::class, 'hasilAkhir']);
+Route::get('hasil/chart', [HasilController::class, 'chart']);
