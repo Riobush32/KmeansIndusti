@@ -12,7 +12,6 @@ class KmeansController extends Controller
 {
     public function __construct(){
         $this->middleware('auth');
-        $this->middleware('is_super_admin');
         $this->middleware('is_admin');
     }
 
@@ -41,13 +40,14 @@ class KmeansController extends Controller
     {
         //hapus(kosongkan) table cluster
         Cluster::truncate();
+        //hapus centroid selain yang belum di proses
+        Centroid::whereNotIn('iterasi', [0])->delete();
         //ambil data industri
-        $industri = dataPilihan::orderBy('total', 'asc')->get();
+        $industri = dataPilihan::all();
 
          //ambil data centroid awal
-        $centroids = Centroid::where('iterasi', 0)->orderBy('total', 'asc')->get();
+        $centroids = Centroid::where('iterasi', 0)->get();
 
-            
         //proses mencari cluster function cluster
         $this->cluster($industri, $centroids);
         //mencari centroid baru
@@ -61,7 +61,7 @@ class KmeansController extends Controller
         if ($request->maxLoop) {
             $maxLoop = $request->maxLoop;
         }
-        while ($Loop < $maxLoop) {
+        while ($Loop < $maxLoop ) {
             
             //ambil data centroid awal
             $centroids = Centroid::where('iterasi', $iterasi)->get();
@@ -108,7 +108,8 @@ class KmeansController extends Controller
         Centroid::truncate();
         $data = dataPilihan::all();
 
-        $centroids = $data->random($request->kvalue);
+        // $centroids = $data->random($request->kvalue);
+        $centroids = $data->take($request->kvalue);
         $centroids->all();
 
         foreach ($centroids as $centroid)
@@ -142,9 +143,9 @@ class KmeansController extends Controller
             foreach ( $centroids as $key => $centroid)
             {
                 $sum = sqrt(
-                                pow(($centroid->berizin)-($data->berizin), 2)+
-                                pow(($centroid->tidak_berizin)-($data->tidak_berizin), 2)+
-                                pow(($centroid->total)-($data->total), 2)
+                                pow(($data->berizin)-($centroid->berizin), 2)+
+                                pow(($data->tidak_berizin)-($centroid->tidak_berizin), 2)+
+                                pow(($data->total)-($centroid->total), 2)
                             );  
                 $k_nilai[] = $sum;
                 $i++;
@@ -158,10 +159,10 @@ class KmeansController extends Controller
             $index = array_search($k_min, $k_nilai);
             
             //pengulangan yang dilakukan untuk menyimpan data, jika data kosong akan di beri nilai nol
-            for ($i=0; $i < 25; $i++) { 
-                if (empty($k_nilai[$i]))
+            for ($j=0; $j < 25; $j++) { 
+                if (empty($k_nilai[$j]))
                 {
-                    $k_nilai[$i] = 0;
+                    $k_nilai[$j] = 0;
                 }
             }
             
@@ -184,6 +185,7 @@ class KmeansController extends Controller
             $iterasi = $j+1;
 
             Centroid::create([
+                'kecamatan'=> $i,
                 'berizin' => $berizin,
                 'tidak_berizin' => $tidak_berizin,
                 'total' => $total,

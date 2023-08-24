@@ -81,10 +81,22 @@
 </div>
 
 <div class="hero min-h-screen bg-base-200 bg-[url('../../../public/img/industri.png')]">
-    <div class="hero-content text-center">
-        <div class="max-w-md">
-            <h1 class="text-5xl font-bold text-primary">Selamat Datang di Website </h1>
-            <p class="py-6">Website Ini Merupakan Website Pengolahan Data </p>
+    <div class="hero-content text-center bg-slate-900 bg-opacity-30 rounded-2xl">
+        <div class="w-[90vw] p-10">
+            <h1 class="text-5xl font-bold text-slate-100">Selamat Datang di Website </h1>
+            <p class="py-6 text-slate-200">
+                Terhitung mulai 2 Januari 2014 Dinas Koperasi dan UMKM Kabupaten Asahan merger dengan Dinas Perindustrian dan
+                Perdagangan Kabupaten Asahan Menjadi Dinas Koperasi Perindustrian dan Perdagangan Kabupaten Asahan.
+                Dengan Terbinya Perda Nomor 8 tahun 2013 tanggal 2 september 2013 tentang organisasi dan tata kerja dinas-dinas daerah
+                Kabupaten Asahan.
+                Dan pada januari 2017 Dinas Koperasi Perindustrian dan Perdagangan berubah menjadi Dinas Koperasi Perdagangan, dimana
+                bidang Perindustrian beralih ke Dinas Ketenagakerjaan dengan dasar hukum peraturan daerah Kabupaten Asahan Nomor 7 tahun
+                2016 tentang pembekuan perangkat daerah Kabupaten Asahan.
+                Dan pada Oktober 2022 Dinas Koperasi dan Peragangan berubah menjadi Dinas Koperasi, Perdagangan dan Perindustrian yang
+                sesuai dengan peraturan daerah Kabupaten Asahan Nomor 2 tahun 2022 tentang perubahan atas peraturan daerah Kabupaten
+                Asahan Nomor 7 tahun 2016 tentang pembekuan perangkat daerah Kabupaten, dimana bidang perindustrian beralih kembali ke
+                Dinas Koperasi, Perdagangan dan Perindustrian Kabupaten Asahan.
+            </p>
         </div>
     </div>
 </div>

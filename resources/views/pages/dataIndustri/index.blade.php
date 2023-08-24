@@ -46,9 +46,14 @@
                             <th>{{ $no }}</th>
                             <td>{{ $item}}</td>
                             <td>
-                                <a href="{{ url("/dataIndustri/$item/filter") }}" class="btn btn-outline btn-primary-focus btn-sm">
+                                <a href="{{ url("/dataIndustri/$item/filter") }}" class="btn btn-outline btn-primary btn-sm">
                                     <span class="material-symbols-sharp">
                                         docs_add_on
+                                    </span>
+                                </a>
+                                <a href="{{ url("/dataIndustri/$item/truncate") }}" class="btn btn-outline btn-error btn-sm">
+                                    <span class="material-symbols-sharp">
+                                        delete
                                     </span>
                                 </a>
                 

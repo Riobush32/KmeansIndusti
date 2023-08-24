@@ -20,7 +20,7 @@
 
     <div class="">
 
-        @if (Auth::user()->role == 'superadmin')
+        {{-- @if (Auth::user()->role == 'superadmin')
         <a href="{{ url('/user') }}" class="sidebar-button items-center flex  {{ $active == 'user_data' ? 'bg-primary' : '' }}">
             <div class="ml-5 items-center flex text-sm">
                 <span class="material-symbols-sharp ml-1">
@@ -31,7 +31,7 @@
                 </span>
             </div>
         </a>
-        @endif
+        @endif --}}
 
         <a href="{{ url('/data/industri') }}" class="sidebar-button items-center flex {{ $active == 'dataIndustri' ? 'bg-primary' : '' }}">
             <div class="ml-5 items-center flex text-sm">

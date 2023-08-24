@@ -10,7 +10,6 @@ class IndustriController extends Controller
 {
     public function __construct(){
         $this->middleware('auth');
-        $this->middleware('is_super_admin');
         $this->middleware('is_admin');
     }
 
@@ -33,6 +32,12 @@ class IndustriController extends Controller
             'data' => $dataIndustri,
             'tahun' => $tahun
         ]);
+    }
+
+    public function truncate($tahun)
+    {
+        DataIndustri::truncate();
+        return back()->with('delete', 'Di Hapus');
     }
 
     public function dataPilihan($tahun)

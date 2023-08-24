@@ -6,12 +6,12 @@ use App\Models\Cluster;
 use App\Models\Centroid;
 use Illuminate\Http\Request;
 use App\Charts\Cluster1Chart;
+use App\Charts\JumlahIndustri1Chart;
 
 class HasilController extends Controller
 {
     public function __construct(){
         $this->middleware('auth');
-        $this->middleware('is_super_admin');
         $this->middleware('is_admin');
     }
 
@@ -60,7 +60,7 @@ class HasilController extends Controller
         ]);
     }
 
-    public function hasilAkhir(Cluster1Chart $chart)
+    public function hasilAkhir(Cluster1Chart $chart, JumlahIndustri1Chart $chartIndustri)
     {
         $iterasi = Cluster::distinct('iterasi')->pluck('iterasi')->toArray();
         $hasil = max($iterasi);
@@ -78,6 +78,7 @@ class HasilController extends Controller
             'active' => 'hasil',
             'iterasi' => $iterasi,
             'chart' => $chart->build(),
+            'chartIndustri' => $chartIndustri->build(),
         ]);
 
     }
