@@ -33,6 +33,7 @@ Route::delete('/user/{id}', [UserController::class, 'destroy']);
 //data Industri routes
 Route::get('/data/industri', [IndustriController::class, 'index']);
 Route::get('/dataIndustri/{tahun}/filter', [IndustriController::class, 'filterTahun']);
+Route::get('/dataIndustri/{tahun}/truncate', [IndustriController::class, 'truncate']);
 Route::get('/dataIndustri/{tahun}/dataPilihan', [IndustriController::class, 'dataPilihan']);
 
 //excel routes

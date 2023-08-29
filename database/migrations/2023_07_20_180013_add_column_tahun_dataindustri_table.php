@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('data_industris', function (Blueprint $table) {
-            $table->integer('tahun')->nullable();
+            $table->integer('tahun')->after('total')->nullable();
         });
     }
 

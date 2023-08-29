@@ -41,6 +41,9 @@
                 <div class="p-6 m-20 rounded shadow-md">
                     {!! $chart->container() !!}
                 </div>
+                <div class="p-6 m-20 rounded shadow-md">
+                    {!! $chartIndustri->container() !!}
+                </div>
                 <table class="table table-compact w-full">
 
                     <thead>
@@ -85,8 +88,11 @@
     </div>
 </div>
 
-<script src="{{ $chart->cdn() }}"></script>
 
+<script src="{{ $chartIndustri->cdn() }}"></script>
+{{ $chartIndustri->script() }}
+
+<script src="{{ $chart->cdn() }}"></script>
 {{ $chart->script() }}
 
 <script src="./src/js/alert.js"></script>
